@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).on('keydown', function(e) {
+            $("#down").text(e.which);
+            $.getJSON('http://localhost:8090/event', {event:'down',key:e.which}, function (data, textStatus, jqXHR){
+                $('p').append(data.firstName);
+            });
+        });
+        $(document).on('keyup', function(e) {
+            $("#up").text(e.which)
+            $.getJSON('http://localhost:8090/event', {event:'up',key:e.which}, function (data, textStatus, jqXHR){
+                $('p').append(data.firstName);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>Keypresses: <span id="down">0</span></p>
+<p>Keypresses: <span id="up">0</span></p>
+<p></p>
+</body>
+</html>
